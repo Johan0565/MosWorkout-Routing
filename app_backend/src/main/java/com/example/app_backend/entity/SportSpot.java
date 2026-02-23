@@ -1,0 +1,48 @@
+package com.example.app_backend.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import org.locationtech.jts.geom.Point;
+
+import java.util.Map;
+
+@Entity
+@Table(name = "sport_spots")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
+public class SportSpot {
+    @Id
+    @Column(name = "global_id")
+    private Long id;
+
+    @Column(name = "dataset_id", nullable = false)
+    private Long datasetId;
+
+    @Column(name = "object_name")
+    private String objectName;
+
+    @Column(name = "address", columnDefinition = "TEXT")
+    private String address;
+
+    @Column(name = "district")
+    private String district;
+
+    @Column(name = "surface_type")
+    private String surfaceType;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "services", columnDefinition = "jsonb")
+    private Map<String, Object> services;
+
+    @Column(name = "geom", columnDefinition = "geometry(Point,4326)")
+    private Point geom;
+}
