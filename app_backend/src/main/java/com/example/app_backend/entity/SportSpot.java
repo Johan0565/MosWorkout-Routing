@@ -4,9 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Point;
@@ -18,6 +16,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 
 public class SportSpot {
     @Id
@@ -45,4 +44,13 @@ public class SportSpot {
 
     @Column(name = "geom", columnDefinition = "geometry(Point,4326)")
     private Point geom;
+
+
+    public void setGlobalId(long count) {
+        this.id = count;
+    }
+
+    public String getGlobalId() {
+        return String.valueOf(id);
+    }
 }

@@ -31,4 +31,12 @@ public class BikeLane {
 
     @Column(name = "geom", columnDefinition = "geometry(MultiLineString,4326)")
     private MultiLineString geom;
+
+    public void setGlobalId(long globalId) {
+        this.id = globalId;
+    }
+
+    public String getGlobalId() {
+        return String.valueOf(id);
+    }
 }
