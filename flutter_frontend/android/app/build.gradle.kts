@@ -1,4 +1,5 @@
 plugins {
+
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
@@ -20,6 +21,7 @@ android {
     }
 
     defaultConfig {
+
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.flutter_frontend.flutter_frontend"
         // You can update the following values to match your application needs.
@@ -41,4 +43,10 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    // ... здесь могут быть другие зависимости ...
+
+    // Добавляем MapKit (версия full нужна, так как ты планируешь строить маршруты)
+    implementation("com.yandex.android:maps.mobile:4.4.0-full")
 }

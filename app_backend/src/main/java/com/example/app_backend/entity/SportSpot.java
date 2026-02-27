@@ -8,6 +8,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Point;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import java.util.Map;
 
 
 public class SportSpot {
+
     @Id
     @Column(name = "global_id")
     private Long id;
@@ -42,8 +44,7 @@ public class SportSpot {
     @Column(name = "services", columnDefinition = "jsonb")
     private Map<String, Object> services;
 
-    @Column(name = "geom", columnDefinition = "geometry(Point,4326)")
-    private Point geom;
+
 
 
     public void setGlobalId(long count) {
@@ -52,5 +53,17 @@ public class SportSpot {
 
     public String getGlobalId() {
         return String.valueOf(id);
+    }
+    @JsonIgnore // <--- Прячем сложный объект от генератора JSON
+    @Column(name = "geom", columnDefinition = "geometry(Point,4326)")
+    private Point geom;
+
+    // Секретный трюк: Jackson увидит геттеры и сам создаст поля "lat" и "lon" в JSON
+    public Double getLat() {
+        return geom != null ? geom.getY() : null;
+    }
+
+    public Double getLon() {
+        return geom != null ? geom.getX() : null;
     }
 }

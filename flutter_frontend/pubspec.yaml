@@ -38,11 +38,14 @@ dependencies:
   latlong2: ^0.9.0
   http: ^1.2.0
   dio: ^5.4.1
+  maplibre_gl: ^0.16.0
   flutter_map_cache: ^2.0.0+1
   path_provider: ^2.1.2
   geolocator: ^11.1.0
   flutter_map_location_marker: ^8.0.2
   flutter_compass: ^0.8.1
+  yandex_mapkit: ^3.4.0  # Сам MapKit
+  permission_handler: ^11.3.0 # Для запроса прав на геолокацию
 
 dev_dependencies:
   flutter_test:
